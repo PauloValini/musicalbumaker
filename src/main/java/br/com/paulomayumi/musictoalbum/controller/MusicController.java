@@ -2,6 +2,7 @@ package br.com.paulomayumi.musictoalbum.controller;
 
 import br.com.paulomayumi.musictoalbum.dto.MusicDto;
 import br.com.paulomayumi.musictoalbum.service.MusicService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.LinkRelation;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Music", description = "Endpoint usado para operações que envolvem Musicas")
 @RestController
 @RequestMapping("/api/music")
 public class MusicController {
@@ -21,21 +23,21 @@ public class MusicController {
 
     @PostMapping
     public ResponseEntity<MusicDto> create(@RequestBody MusicDto musicDto){
-        MusicDto city = service.create(musicDto);
-        return new ResponseEntity<>(city, HttpStatus.CREATED);
+        MusicDto music = service.create(musicDto);
+        return new ResponseEntity<>(music, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MusicDto> findById(@PathVariable(name = "id") long id){
-        MusicDto city = service.findById(id);
-        this.buildSelfLink(city);
-        return new ResponseEntity<>(city, HttpStatus.OK);
+        MusicDto music = service.findById(id);
+        this.buildSelfLink(music);
+        return new ResponseEntity<>(music, HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<MusicDto> update(@RequestBody MusicDto musicDto){
-        MusicDto city = service.update(musicDto);
-        return new ResponseEntity<>(city, HttpStatus.OK);
+        MusicDto music = service.update(musicDto);
+        return new ResponseEntity<>(music, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -46,18 +48,18 @@ public class MusicController {
 
     @GetMapping
     public ResponseEntity<CollectionModel<MusicDto>> findAll(){
-        CollectionModel<MusicDto> cities  = CollectionModel.of(service.findAll());
-        for(MusicDto city : cities){
-            buildSelfLink(city);
+        CollectionModel<MusicDto> musics  = CollectionModel.of(service.findAll());
+        for(MusicDto music : musics){
+            buildSelfLink(music);
         }
-        this.buildCollectionLink(cities);
-        return new ResponseEntity<CollectionModel<MusicDto>>(cities, HttpStatus.OK);
+        this.buildCollectionLink(musics);
+        return new ResponseEntity<CollectionModel<MusicDto>>(musics, HttpStatus.OK);
     }
 
     @GetMapping("/find/name/{name}")
     public ResponseEntity<List<MusicDto>> findByName(@PathVariable(name = "name") String name){
-        var cities = service.findByName(name);
-        return new ResponseEntity<List<MusicDto>>(cities, HttpStatus.OK);
+        var musics = service.findByName(name);
+        return new ResponseEntity<List<MusicDto>>(musics, HttpStatus.OK);
     }
 
     @GetMapping("/find/state/{state}")
@@ -84,6 +86,4 @@ public class MusicController {
                 ).withRel(LinkRelation.of("COLLECTION"))
         );
     }
-
-
 }

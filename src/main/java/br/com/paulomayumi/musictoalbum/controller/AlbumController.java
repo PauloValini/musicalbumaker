@@ -19,7 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Albums", description = "Endpoint usado para operações que envolvem Customers")
+@Tag(name = "Albums", description = "Endpoint usado para operações que envolvem Albums")
 @RestController
 @RequestMapping("/api/album")
 public class AlbumController {
@@ -27,23 +27,22 @@ public class AlbumController {
     @Autowired
     private AlbumService albumService;
 
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "Cria ou cadastra um novo Customer (Cliente)", tags = {"Customer"},responses = {
+    @Operation(summary = "Cria ou cadastra um novo Album", tags = {"Album"},responses = {
             @ApiResponse(description = "CREATED", responseCode = "201", content = {@Content(
                     mediaType = "application/json",
                     schema = @Schema(implementation = AlbumDto.class)
             )}),
     })
     public ResponseEntity<AlbumDto> create(@RequestBody AlbumDto albumDto){
-        AlbumDto customer = albumService.create(albumDto);
-        return new ResponseEntity<>(customer, HttpStatus.CREATED);
+        AlbumDto album = albumService.create(albumDto);
+        return new ResponseEntity<>(album, HttpStatus.CREATED);
     }
 
 
-    @Operation(summary = "Recuperar um Customer (ou Cliente) mediante um ID informado", tags = {"Customer"},
+    @Operation(summary = "Recuperar um Album mediante um ID informado", tags = {"Album"},
         responses = {
-                @ApiResponse(description = "Customer recuperado com sucesso!", responseCode = "200", content = {@Content(
+                @ApiResponse(description = "Album recuperado com sucesso!", responseCode = "200", content = {@Content(
                         mediaType = "application/json",
                         schema = @Schema(implementation = AlbumDto.class)
                 )}),
@@ -55,14 +54,14 @@ public class AlbumController {
     )
     @GetMapping("/{id}")
     public ResponseEntity<AlbumDto> findById(@PathVariable(name = "id") long id){
-        AlbumDto customer = albumService.findById(id);
-        return new ResponseEntity<>(customer, HttpStatus.OK);
+        AlbumDto album = albumService.findById(id);
+        return new ResponseEntity<>(album, HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<AlbumDto> update(@RequestBody AlbumDto albumDto){
-        AlbumDto customerUpdated = albumService.update(albumDto);
-        return new ResponseEntity<>(customerUpdated, HttpStatus.OK);
+        AlbumDto albumUpdated = albumService.update(albumDto);
+        return new ResponseEntity<>(albumUpdated, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -80,8 +79,8 @@ public class AlbumController {
     ){
         var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "title"));
-        Page<AlbumDto> customers = albumService.findAll(pageable);
-        return new ResponseEntity(assembler.toModel(customers), HttpStatus.OK);
+        Page<AlbumDto> album = albumService.findAll(pageable);
+        return new ResponseEntity(assembler.toModel(album), HttpStatus.OK);
 
     }
 
