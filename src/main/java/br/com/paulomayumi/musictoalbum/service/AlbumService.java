@@ -24,13 +24,13 @@ public class AlbumService {
 
     public AlbumDto findById(long id){
         AlbumModel albumModel = repository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Cliente não encontrado!"));
+                ()-> new ResourceNotFoundException("Album não encontrado!"));
         return CustomModelMapper.parseObject(albumModel, AlbumDto.class);
     }
 
     public AlbumDto update(AlbumDto albumDto){
         AlbumModel albumModel = repository.findById(albumDto.getId()).orElseThrow(
-                ()-> new ResourceNotFoundException("Cliente não encontrado!")
+                ()-> new ResourceNotFoundException("Album não encontrado!")
         );
         albumModel.setReleaseDate(albumDto.getReleaseDate());
         albumModel.setArtist(albumDto.getArtist());
@@ -43,14 +43,14 @@ public class AlbumService {
 
     public void delete(long id){
         AlbumModel albumModel = repository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("Cliente não encontrado!")
+                ()-> new ResourceNotFoundException("Album não encontrado!")
         );
         repository.delete(albumModel);
     }
 
     public Page<AlbumDto> findAll(Pageable pageable){
-        var customers = repository.findAll(pageable);
-        return customers.map( c -> CustomModelMapper.parseObject(c, AlbumDto.class));
+        var album = repository.findAll(pageable);
+        return album.map( c -> CustomModelMapper.parseObject(c, AlbumDto.class));
     }
 
 }

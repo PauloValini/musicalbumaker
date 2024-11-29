@@ -17,20 +17,20 @@ public class MusicService {
     private MusicRepository repository;
 
     public MusicDto create(MusicDto musicDto){
-        MusicModel city = CustomModelMapper.parseObject(musicDto, MusicModel.class);
-        return CustomModelMapper.parseObject(repository.save(city), MusicDto.class);
+        MusicModel music = CustomModelMapper.parseObject(musicDto, MusicModel.class);
+        return CustomModelMapper.parseObject(repository.save(music), MusicDto.class);
     }
 
     public MusicDto findById(long id){
         MusicModel found = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Cidade não encontrada")
+                () -> new ResourceNotFoundException("Musica não encontrada")
         );
         return CustomModelMapper.parseObject(found, MusicDto.class);
     }
 
     public MusicDto update(MusicDto musicDto){
         MusicModel found = repository.findById(musicDto.getId()).orElseThrow(
-                () -> new ResourceNotFoundException("Cidade não encontrada"));
+                () -> new ResourceNotFoundException("Musica não encontrada"));
         found.setTitle(musicDto.getTitle());
         found.setMusicWriter(musicDto.getMusicwriter());
         return CustomModelMapper.parseObject(repository.save(found), MusicDto.class);
@@ -38,7 +38,7 @@ public class MusicService {
 
     public void delete(long id){
         MusicModel found = repository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Cidade não encontrada"));
+                () -> new ResourceNotFoundException("Musica não encontrada"));
         repository.delete(found);
     }
 
@@ -48,13 +48,13 @@ public class MusicService {
     }
 
     public List<MusicDto> findByName(String name){
-        var cities = repository.findByTitleContainsIgnoreCaseOrderByTitle(name);
-        return CustomModelMapper.parseObjectList(cities, MusicDto.class);
+        var musica = repository.findByTitleContainsIgnoreCaseOrderByTitle(name);
+        return CustomModelMapper.parseObjectList(musica, MusicDto.class);
     }
 
     public List<MusicDto> findByState(String state){
-        var cities = repository.findByMusicWriterEqualsIgnoreCaseOrderByMusicWriterAscTitleAsc(state);
-        return CustomModelMapper.parseObjectList(cities, MusicDto.class);
+        var musica = repository.findByMusicWriterEqualsIgnoreCaseOrderByMusicWriterAscTitleAsc(state);
+        return CustomModelMapper.parseObjectList(musica, MusicDto.class);
     }
 
 
