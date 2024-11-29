@@ -20,8 +20,8 @@ public class AlbumModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "full_name", length = 50, nullable = false)
-    private String fullName;
+    @Column(name = "title", length = 50, nullable = false)
+    private String title;
 
     @Column(length = 50, nullable = false)
     private String artist;

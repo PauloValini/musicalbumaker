@@ -32,7 +32,7 @@ public class MusicService {
         MusicModel found = repository.findById(musicDto.getId()).orElseThrow(
                 () -> new ResourceNotFoundException("Cidade não encontrada"));
         found.setTitle(musicDto.getTitle());
-        found.setMusicwriter(musicDto.getMusicwriter());
+        found.setMusicWriter(musicDto.getMusicwriter());
         return CustomModelMapper.parseObject(repository.save(found), MusicDto.class);
     }
 
@@ -48,12 +48,12 @@ public class MusicService {
     }
 
     public List<MusicDto> findByName(String name){
-        var cities = repository.findByNameContainsIgnoreCaseOrderByName(name);
+        var cities = repository.findByTitleContainsIgnoreCaseOrderByTitle(name);
         return CustomModelMapper.parseObjectList(cities, MusicDto.class);
     }
 
     public List<MusicDto> findByState(String state){
-        var cities = repository.findByStateEqualsIgnoreCaseOrderByStateAscNameAsc(state);
+        var cities = repository.findByMusicWriterEqualsIgnoreCaseOrderByMusicWriterAscTitleAsc(state);
         return CustomModelMapper.parseObjectList(cities, MusicDto.class);
     }
 

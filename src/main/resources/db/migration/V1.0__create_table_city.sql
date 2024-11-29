@@ -1,8 +1,8 @@
 --create the table
-create table if not exists musics (
+create table if not exists music (
     id serial not null,
-    name varchar(50) not null,
-    state char(2) not null,
-    constraint pk_city primary key (id)
+    title varchar(50) not null,
+    music_writer varchar(50) not null,
+    constraint pk_music primary key (id)
 );
 

@@ -79,7 +79,7 @@ public class AlbumController {
             PagedResourcesAssembler<AlbumDto> assembler
     ){
         var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "fullName"));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "title"));
         Page<AlbumDto> customers = albumService.findAll(pageable);
         return new ResponseEntity(assembler.toModel(customers), HttpStatus.OK);
 

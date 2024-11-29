@@ -32,11 +32,11 @@ public class AlbumService {
         AlbumModel albumModel = repository.findById(albumDto.getId()).orElseThrow(
                 ()-> new ResourceNotFoundException("Cliente não encontrado!")
         );
-        albumModel.setReleaseDate(albumDto.getBirthDay());
-        albumModel.setArtist(albumDto.getGender());
-        albumModel.setFullName(albumDto.getFullName());
+        albumModel.setReleaseDate(albumDto.getReleaseDate());
+        albumModel.setArtist(albumDto.getArtist());
+        albumModel.setTitle(albumDto.getTitle());
         //parse or convert cityDto to cityModel before setting the value
-        albumModel.setMusic(CustomModelMapper.parseObject(albumDto.getCity(), MusicModel.class));
+        albumModel.setMusic(CustomModelMapper.parseObject(albumDto.getMusic(), MusicModel.class));
         //convert the model to dto to return
         return CustomModelMapper.parseObject(repository.save(albumModel), AlbumDto.class);
     }

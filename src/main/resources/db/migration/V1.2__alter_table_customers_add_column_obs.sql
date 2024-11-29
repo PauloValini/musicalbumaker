@@ -1,2 +1,2 @@
-alter table albums add column
+alter table album add column
     observations varchar(255)

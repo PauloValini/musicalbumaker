@@ -1,10 +1,10 @@
-create table if not exists albums (
+create table if not exists album (
     id serial not null,
-    full_name varchar(50) not null,
-    birthday date not null,
-    gender char(1) not null,
-    city_id bigint not null,
-    constraint pk_customers primary key(id),
-    constraint fk_customers_cities foreign key (city_id) references musics(id)
+    title varchar(50) not null,
+    artist varchar(50) not null,
+    release_date date not null,
+    music_id bigint not null,
+    constraint pk_album primary key(id),
+    constraint fk_album_music foreign key (music_id) references music(id)
 )
 

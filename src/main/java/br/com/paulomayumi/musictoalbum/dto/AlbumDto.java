@@ -14,8 +14,8 @@ import java.util.Date;
 public class AlbumDto {
 
     private long id;
-    private String fullName;
-    private String gender;
-    private Date birthDay;
-    private MusicDto city;
+    private String title;
+    private String artist;
+    private Date releaseDate;
+    private MusicDto music;
 }

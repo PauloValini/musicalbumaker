@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "musics")
+@Table(name = "music")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,6 +22,6 @@ public class MusicModel {
     private String title;
 
     @Column(length = 50, nullable = false)
-    private String musicwriter;
+    private String musicWriter;
 
 }
