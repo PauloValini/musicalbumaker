@@ -19,7 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Albums", description = "Endpoint usado para operações que envolvem Albums")
+@Tag(name = "Album", description = "Endpoint usado para operações que envolvem Albums")
 @RestController
 @RequestMapping("/api/album")
 public class AlbumController {
