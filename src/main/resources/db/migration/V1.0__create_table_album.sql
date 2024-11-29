@@ -1,5 +1,5 @@
 create table if not exists album (
-    id serial not null,
+    id bigserial not null,
     title varchar(50) not null,
     artist varchar(50) not null,
     release_date date not null,
