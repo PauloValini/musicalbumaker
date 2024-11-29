@@ -47,12 +47,12 @@ public class MusicService {
         return CustomModelMapper.parseObjectList(list, MusicDto.class);
     }
 
-    public List<MusicDto> findByName(String name){
+    public List<MusicDto> findByTitle(String name){
         var musica = repository.findByTitleContainsIgnoreCaseOrderByTitle(name);
         return CustomModelMapper.parseObjectList(musica, MusicDto.class);
     }
 
-    public List<MusicDto> findByState(String state){
+    public List<MusicDto> findByMusicwriter(String state){
         var musica = repository.findByMusicWriterEqualsIgnoreCaseOrderByMusicWriterAscTitleAsc(state);
         return CustomModelMapper.parseObjectList(musica, MusicDto.class);
     }

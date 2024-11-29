@@ -56,15 +56,15 @@ public class MusicController {
         return new ResponseEntity<CollectionModel<MusicDto>>(musics, HttpStatus.OK);
     }
 
-    @GetMapping("/find/name/{name}")
-    public ResponseEntity<List<MusicDto>> findByName(@PathVariable(name = "name") String name){
-        var musics = service.findByName(name);
+    @GetMapping("/find/title/{title}")
+    public ResponseEntity<List<MusicDto>> findByTitle(@PathVariable(name = "title") String name){
+        var musics = service.findByTitle(name);
         return new ResponseEntity<List<MusicDto>>(musics, HttpStatus.OK);
     }
 
-    @GetMapping("/find/state/{state}")
-    public ResponseEntity<List<MusicDto>> findByState(@PathVariable(name = "state") String state){
-        var cities = service.findByState(state);
+    @GetMapping("/find/musicwriter/{musicwriter}")
+    public ResponseEntity<List<MusicDto>> findByMusicwriter(@PathVariable(name = "musicwriter") String state){
+        var cities = service.findByMusicwriter(state);
         return new ResponseEntity<List<MusicDto>>(cities, HttpStatus.OK);
     }
 
