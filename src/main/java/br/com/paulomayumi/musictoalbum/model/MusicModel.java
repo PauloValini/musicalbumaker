@@ -21,7 +21,7 @@ public class MusicModel {
     @Column(length = 50, nullable = false)
     private String title;
 
-    @Column(length = 50, nullable = false)
-    private String musicWriter;
-
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private AlbumModel album;
 }

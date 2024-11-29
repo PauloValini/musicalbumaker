@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +18,4 @@ public class AlbumDto {
     private String title;
     private String artist;
     private Date releaseDate;
-    private MusicDto music;
 }

@@ -35,9 +35,7 @@ public class AlbumService {
         albumModel.setReleaseDate(albumDto.getReleaseDate());
         albumModel.setArtist(albumDto.getArtist());
         albumModel.setTitle(albumDto.getTitle());
-        //parse or convert cityDto to cityModel before setting the value
-        albumModel.setMusic(CustomModelMapper.parseObject(albumDto.getMusic(), MusicModel.class));
-        //convert the model to dto to return
+        albumModel.setReleaseDate(albumDto.getReleaseDate());
         return CustomModelMapper.parseObject(repository.save(albumModel), AlbumDto.class);
     }
 

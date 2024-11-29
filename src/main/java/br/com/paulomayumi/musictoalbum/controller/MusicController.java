@@ -62,12 +62,6 @@ public class MusicController {
         return new ResponseEntity<List<MusicDto>>(musics, HttpStatus.OK);
     }
 
-    @GetMapping("/find/musicwriter/{musicwriter}")
-    public ResponseEntity<List<MusicDto>> findByMusicwriter(@PathVariable(name = "musicwriter") String state){
-        var cities = service.findByMusicwriter(state);
-        return new ResponseEntity<List<MusicDto>>(cities, HttpStatus.OK);
-    }
-
     private void buildSelfLink(MusicDto musicDto){
         //self link
         musicDto.add(

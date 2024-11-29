@@ -14,10 +14,6 @@ public class MusicDto extends RepresentationModel<MusicDto> {
 
     private long id;
     private String title;
-    private String musicwriter;
-
-    public String getTitleAndWriter(){
-        return title + "/" + musicwriter;
-    }
+    private AlbumDto album;
 
 }

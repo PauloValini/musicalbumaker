@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "album")
@@ -28,10 +29,4 @@ public class AlbumModel {
 
     @Column(name = "releaseDate", nullable = false)
     private Date releaseDate;
-
-    @ManyToOne
-    @JoinColumn(name = "music_id")
-    private MusicModel music;
-
-
 }

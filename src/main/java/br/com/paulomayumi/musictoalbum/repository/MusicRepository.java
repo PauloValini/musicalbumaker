@@ -10,7 +10,4 @@ import java.util.List;
 public interface MusicRepository extends JpaRepository<MusicModel, Long> {
 
     public List<MusicModel> findByTitleContainsIgnoreCaseOrderByTitle(String name);
-
-    public List<MusicModel> findByMusicWriterEqualsIgnoreCaseOrderByMusicWriterAscTitleAsc(String state);
-
 }
